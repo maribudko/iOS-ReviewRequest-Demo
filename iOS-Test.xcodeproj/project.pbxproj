@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA85877A2E87E5E8005A1807 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = EA8587792E87E5E8005A1807 /* Swinject */; };
 		EF9196922B3B1D5700DC508B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9196912B3B1D5700DC508B /* AppDelegate.swift */; };
 		EF91969B2B3B1D5C00DC508B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF91969A2B3B1D5C00DC508B /* Assets.xcassets */; };
 		EF91969E2B3B1D5C00DC508B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF91969C2B3B1D5C00DC508B /* LaunchScreen.storyboard */; };
@@ -36,11 +37,19 @@
 		EFB579DB2C6273090092710B /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		EA85877B2E87E624005A1807 /* Repositories */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Repositories; sourceTree = "<group>"; };
+		EA8587802E87E7D5005A1807 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
+		EA8587832E87E8AB005A1807 /* DI */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = DI; sourceTree = "<group>"; };
+		EA8587D72E87F5AA005A1807 /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		EF91968B2B3B1D5700DC508B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA85877A2E87E5E8005A1807 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,7 +59,10 @@
 		EF9196852B3B1D5700DC508B = {
 			isa = PBXGroup;
 			children = (
-				EFB579DD2C62888A0092710B /* Services */,
+				EA8587832E87E8AB005A1807 /* DI */,
+				EA8587802E87E7D5005A1807 /* Models */,
+				EA85877B2E87E624005A1807 /* Repositories */,
+				EA8587D72E87F5AA005A1807 /* Services */,
 				EF9196B12B3B1DA900DC508B /* Dummy */,
 				EF9196912B3B1D5700DC508B /* AppDelegate.swift */,
 				EF9196B22B3B263300DC508B /* SceneDelegate.swift */,
@@ -83,13 +95,6 @@
 			path = Dummy;
 			sourceTree = "<group>";
 		};
-		EFB579DD2C62888A0092710B /* Services */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -104,6 +109,12 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				EA85877B2E87E624005A1807 /* Repositories */,
+				EA8587802E87E7D5005A1807 /* Models */,
+				EA8587832E87E8AB005A1807 /* DI */,
+				EA8587D72E87F5AA005A1807 /* Services */,
 			);
 			name = "iOS-Test";
 			productName = "iOS-Test";
@@ -134,6 +145,9 @@
 				Base,
 			);
 			mainGroup = EF9196852B3B1D5700DC508B;
+			packageReferences = (
+				EA8587782E87E5E8005A1807 /* XCRemoteSwiftPackageReference "Swinject" */,
+			);
 			productRefGroup = EF91968F2B3B1D5700DC508B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -312,6 +326,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 93377Y9PF9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -338,6 +353,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 93377Y9PF9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -379,6 +395,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EA8587782E87E5E8005A1807 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EA8587792E87E5E8005A1807 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EA8587782E87E5E8005A1807 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EF9196862B3B1D5700DC508B /* Project object */;
 }
