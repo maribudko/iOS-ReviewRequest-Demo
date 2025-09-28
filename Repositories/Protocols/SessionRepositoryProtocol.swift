@@ -14,16 +14,3 @@ protocol SessionRepositoryProtocol: AnyObject {
     func update(session: SessionEntity)
     func removeAllNotActive()
 }
-
-
-//private func getActualSession() -> SessionEntity? {
-//    guard let lastSession = sessionRepo.getLatestSession() else {
-//        return nil
-//    }
-//   
-//    if isAlive(lastBgDate: sessionRepo.getLastBackgroundDate() ?? .now) {
-//        return lastSession
-//    }
-//        
-//    return startNewSession()
-//}

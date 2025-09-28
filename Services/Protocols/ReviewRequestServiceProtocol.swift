@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import StoreKit
 
 protocol ReviewRequestServiceProtocol: AnyObject {
-    
+    func evaluateAndRequestIfNeeded(on viewController: UIViewController?)
+    func requestReview(on viewController: UIViewController?)
 }
