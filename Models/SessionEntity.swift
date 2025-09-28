@@ -8,15 +8,13 @@
 import Foundation
 
 class SessionEntity {
-    var sessionStart: TimeInterval
-    var sessionEnd: TimeInterval?
-    var sessionDurationSecs: Int?
     var sessionId: UUID
+    var sessionStart: Date
+    var sessionEnd: Date?
     
-    init(sessionStart: TimeInterval, sessionEnd: TimeInterval?, sessionDurationSecs: Int?, sessionId: UUID) {
+    init(sessionId: UUID, sessionStart: Date, sessionEnd: Date? = nil) {
+        self.sessionId = sessionId
         self.sessionStart = sessionStart
         self.sessionEnd = sessionEnd
-        self.sessionDurationSecs = sessionDurationSecs
-        self.sessionId = sessionId
     }
 }

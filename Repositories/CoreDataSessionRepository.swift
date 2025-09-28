@@ -8,17 +8,26 @@
 import Foundation
 
 class CoreDataSessionRepository: SessionRepositoryProtocol {
-    func addSession(session: SessionEntity) {
-        
+    func add(session: SessionEntity) {
     }
     
-    func getAllSessions() -> [SessionEntity] {
+    func getAllCompleted() -> [SessionEntity] {
         return []
     }
     
-    func getLatestSession() -> SessionEntity? {
+    func getLatest() -> SessionEntity? {
         return nil
     }
+    
+    func update(session: SessionEntity) {
+        
+    }
+    
+    func removeAllNotActive() {
+        
+    }
+    
+    
     
     
 }

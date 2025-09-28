@@ -13,5 +13,7 @@ public final class AppAssembly: Assembly {
     public func assemble(container: Swinject.Container) {
         container.register(SessionRepositoryProtocol.self) { _ in CoreDataSessionRepository() }
         container.register(ReviewRepositoryProtocol.self) { _ in CoreDataReviewRepository() }
+        container.register(AppLifecycleRepositoryProtocol.self) { _ in UserDefaultsAppLifecycleRepository() }
+        container.register(SessionTrackerServiceProtocol.self) { _ in SessionTrackerService() }
     }
 }
