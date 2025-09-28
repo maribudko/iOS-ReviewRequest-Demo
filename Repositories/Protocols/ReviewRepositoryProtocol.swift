@@ -8,5 +8,6 @@
 import Foundation
 
 protocol ReviewRepositoryProtocol: AnyObject {
-    
+    func setLastRequestDate(date: Date)
+    func getLastRequestDate() -> Date?
 }

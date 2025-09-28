@@ -8,10 +8,15 @@
 import Foundation
 
 final class SessionTrackerService: SessionTrackerServiceProtocol {
-    let sessionRepo = AppAssembler.shared.resolver.resolve(SessionRepositoryProtocol.self)
-    let userDefaultsRepo = AppAssembler.shared.resolver.resolve(AppLifecycleRepositoryProtocol.self)
+    private let sessionRepo: SessionRepositoryProtocol
+    private let userDefaultsRepo: AppLifecycleRepositoryProtocol
+    
     private let hour: TimeInterval = 60 * 60
-    private let distinctSessionsValue = 2
+    
+    init(sessionRepo: SessionRepositoryProtocol, userDefaultsRepo: AppLifecycleRepositoryProtocol) {
+        self.sessionRepo = sessionRepo
+        self.userDefaultsRepo = userDefaultsRepo
+    }
     
     public func willEnterForeground() {
         userDefaultsRepo.setLastFgDate()
