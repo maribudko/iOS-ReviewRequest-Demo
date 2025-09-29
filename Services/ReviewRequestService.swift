@@ -48,12 +48,14 @@ final class ReviewRequestService: ReviewRequestServiceProtocol {
         reviewRepo.setLastRequestDate(date: now)
     }
     
+    // MARK: - private
+    
     private func isEligible(now: Date) -> Bool {
         // check distinct sessions condition
         let sessionsOk = sessionRepo.getAllCompleted().count >= distinctSessionsValue
         
         // check usage time
-        let saved = lifeCycleRepo.getTotalUsageSeconds() ?? 0
+        let saved = lifeCycleRepo.getTotalUsageSeconds()
         let tail: TimeInterval = {
             guard let lastFg = lifeCycleRepo.getLastFgDate() else { return 0 }
             return max(0, now.timeIntervalSince(lastFg))

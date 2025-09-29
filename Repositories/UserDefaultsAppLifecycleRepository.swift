@@ -8,28 +8,39 @@
 import Foundation
 
 final class UserDefaultsAppLifecycleRepository: AppLifecycleRepositoryProtocol {
+    private let defaults: UserDefaults
     
-    func setLastFgDate() {
-        
+    init(userDefaults: UserDefaults = .standard) {
+        self.defaults = userDefaults
+    }
+    
+    func setLastFgDate(date: Date) {
+        defaults.set(date.timeIntervalSince1970, forKey: UserDefaultsKeys.Session.lastForegroundDate)
     }
     
     func getLastFgDate() -> Date? {
-        return .now
+        let lastFgDate = defaults.double(forKey: UserDefaultsKeys.Session.lastForegroundDate)
+        
+        return lastFgDate == 0 ? nil : Date(timeIntervalSince1970: lastFgDate)
     }
     
-    func setLastBgDate() {
-        
+    func setLastBgDate(date: Date) {
+        defaults.set(date.timeIntervalSince1970, forKey: UserDefaultsKeys.Session.lastBackgroundDate)
     }
     
     func getLastBgDate() -> Date? {
-        return .now
+        let lastBgDate = defaults.double(forKey: UserDefaultsKeys.Session.lastBackgroundDate)
+        
+        return lastBgDate == 0 ? nil : Date(timeIntervalSince1970: lastBgDate)
     }
     
     func setTotalUsageSeconds(seconds: TimeInterval) {
-        
+        defaults.set(seconds, forKey: UserDefaultsKeys.Session.totalUsageSeconds)
     }
     
-    func getTotalUsageSeconds() -> TimeInterval? {
-        return 0
+    func getTotalUsageSeconds() -> TimeInterval {
+        let totalUsageSeconds = defaults.double(forKey: UserDefaultsKeys.Session.totalUsageSeconds)
+        
+        return totalUsageSeconds
     }
 }

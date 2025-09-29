@@ -16,14 +16,14 @@ final class AppAssembly: Assembly {
         container.register(SessionTrackerServiceProtocol.self) { resolver in
             guard
                 let sessionRepo: SessionRepositoryProtocol = resolver.resolve(CoreDataSessionRepository.self),
-                let userDefaultsRepo: AppLifecycleRepositoryProtocol = resolver.resolve(UserDefaultsAppLifecycleRepository.self)
+                let lifecycleRepo: AppLifecycleRepositoryProtocol = resolver.resolve(UserDefaultsAppLifecycleRepository.self)
             else {
                 fatalError("Can't resolve dependencies for SessionTrackerService")
             }
             
             return SessionTrackerService(
                 sessionRepo: sessionRepo,
-                userDefaultsRepo: userDefaultsRepo
+                lifecycleRepo: lifecycleRepo
             )
         }
         

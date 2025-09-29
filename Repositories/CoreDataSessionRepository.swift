@@ -26,8 +26,4 @@ class CoreDataSessionRepository: SessionRepositoryProtocol {
     func removeAllNotActive() {
         
     }
-    
-    
-    
-    
 }
