@@ -5,12 +5,14 @@
 
 import UIKit
 import FirebaseAnalytics
+import StoreKit
 
 protocol DummyDisplayLogic: AnyObject {
     func display(model: DummyModels.Load.ViewModel)
 }
 
-class DummyViewController: UIViewController {
+class DummyViewController: UIViewController, AppReviewRequestProtocol {
+    
     var interactor: DummyBusinessLogic?
     var router: DummyRoutingLogic?
     
@@ -42,12 +44,22 @@ class DummyViewController: UIViewController {
                 AnalyticsParameterScreenClass: "DummyViewController"
             ])
         
-        Services.reviewRequestService.evaluateAndRequestIfNeeded(on: self)
+        Services.reviewRequestService.evaluateAndRequestIfNeeded(reviewRequest: self)
     }
     
     // MARK: - Common
     func setupUI() {
         self.navigationItem.title = "Hello world!"
+    }
+    
+    func requestReview() {
+        let scene = self.view.window?.windowScene
+        ?? UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .first { $0.activationState == .foregroundActive }
+        
+        guard let scene else { return }
+        SKStoreReviewController.requestReview(in: scene)
     }
 }
 

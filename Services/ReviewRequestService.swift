@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import StoreKit
 
 final class ReviewRequestService: ReviewRequestServiceProtocol {
     private let sessionRepo: SessionRepositoryProtocol
@@ -29,28 +28,12 @@ final class ReviewRequestService: ReviewRequestServiceProtocol {
         self.dateProvider = dateProvider
     }
     
-    func evaluateAndRequestIfNeeded(on viewController: UIViewController?) {
+    func evaluateAndRequestIfNeeded(reviewRequest: AppReviewRequestProtocol) {
         guard isEligible(now: dateProvider()) else { return }
-        requestReview(on: viewController)
-    }
-    
-    func requestReview(on viewController: UIViewController?) {
-        let now = dateProvider()
-        let scene = viewController?.view.window?.windowScene
-        ?? UIApplication.shared.connectedScenes
-            .compactMap { $0 as? UIWindowScene }
-            .first { $0.activationState == .foregroundActive }
         
-        guard let scene else { return }
-        
-#if DEBUG
-        print("Store Review is called")
-#else
-        SKStoreReviewController.requestReview(in: scene)
-#endif
-        reviewRepo.setLastRequestDate(date: now)
+        reviewRequest.requestReview()
+        reviewRepo.setLastRequestDate(date: dateProvider())
         sessionRepo.removeAllCompleted()
-        
     }
     
     // MARK: - private

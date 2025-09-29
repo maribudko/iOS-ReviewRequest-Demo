@@ -28,6 +28,7 @@ final class AppAssembly: Assembly {
             UserDefaultsReviewRepository()
         }
         .inObjectScope(.container)
+        
         container.register(AppLifecycleRepositoryProtocol.self) { _ in
             UserDefaultsAppLifecycleRepository()
         }
@@ -52,7 +53,7 @@ final class AppAssembly: Assembly {
         container.register(ReviewRequestServiceProtocol.self) { resolver in
             guard
                 let sessionRepo: SessionRepositoryProtocol = resolver.resolve(SessionRepositoryProtocol.self),
-                let lifecycleRepo: AppLifecycleRepositoryProtocol = resolver.resolve(UserDefaultsAppLifecycleRepository.self),
+                let lifecycleRepo: AppLifecycleRepositoryProtocol = resolver.resolve(AppLifecycleRepositoryProtocol.self),
                 let reviewRepo: ReviewRepositoryProtocol = resolver.resolve(ReviewRepositoryProtocol.self)
             else {
                 fatalError("Can't resolve dependencies for ReviewRequestService")

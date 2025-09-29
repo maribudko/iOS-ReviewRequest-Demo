@@ -9,6 +9,5 @@ import Foundation
 import UIKit
 
 protocol ReviewRequestServiceProtocol: AnyObject {
-    func evaluateAndRequestIfNeeded(on viewController: UIViewController?)
-    func requestReview(on viewController: UIViewController?)
+    func evaluateAndRequestIfNeeded(reviewRequest: AppReviewRequestProtocol)
 }
