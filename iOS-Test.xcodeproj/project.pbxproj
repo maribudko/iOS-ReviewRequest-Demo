@@ -42,6 +42,7 @@
 		EA8587802E87E7D5005A1807 /* Models */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Models; sourceTree = "<group>"; };
 		EA8587832E87E8AB005A1807 /* DI */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = DI; sourceTree = "<group>"; };
 		EA8587D72E87F5AA005A1807 /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
+		EA8587EE2E8A5DBA005A1807 /* CoreData */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CoreData; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +60,7 @@
 		EF9196852B3B1D5700DC508B = {
 			isa = PBXGroup;
 			children = (
+				EA8587EE2E8A5DBA005A1807 /* CoreData */,
 				EA8587832E87E8AB005A1807 /* DI */,
 				EA8587802E87E7D5005A1807 /* Models */,
 				EA85877B2E87E624005A1807 /* Repositories */,
@@ -115,6 +117,7 @@
 				EA8587802E87E7D5005A1807 /* Models */,
 				EA8587832E87E8AB005A1807 /* DI */,
 				EA8587D72E87F5AA005A1807 /* Services */,
+				EA8587EE2E8A5DBA005A1807 /* CoreData */,
 			);
 			name = "iOS-Test";
 			productName = "iOS-Test";

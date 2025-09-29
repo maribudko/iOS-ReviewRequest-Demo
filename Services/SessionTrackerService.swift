@@ -59,7 +59,7 @@ final class SessionTrackerService: SessionTrackerServiceProtocol {
     private func startNewSession(now: Date){
         finalizeSession(now: now)
         
-        let newSession = SessionEntity(sessionId: UUID(), sessionStart: now)
+        let newSession = SessionModel(sessionId: UUID(), sessionStart: now)
         sessionRepo.add(session: newSession)
     }
     

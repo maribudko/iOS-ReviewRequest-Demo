@@ -8,9 +8,9 @@
 import Foundation
 
 protocol SessionRepositoryProtocol: AnyObject {
-    func add(session: SessionEntity)
-    func getAllCompleted() -> [SessionEntity]
-    func getLatest() -> SessionEntity?
-    func update(session: SessionEntity)
+    func add(session: SessionModel)
+    func getAllCompleted() -> [SessionModel]
+    func getLatest() -> SessionModel?
+    func update(session: SessionModel)
     func removeAllNotActive()
 }

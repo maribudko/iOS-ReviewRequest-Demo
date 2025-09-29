@@ -9,13 +9,34 @@ import Swinject
 
 final class AppAssembly: Assembly {
     func assemble(container: Swinject.Container) {
-        container.register(SessionRepositoryProtocol.self) { _ in CoreDataSessionRepository() }
-        container.register(ReviewRepositoryProtocol.self) { _ in UserDefaultsReviewRepository() }
-        container.register(AppLifecycleRepositoryProtocol.self) { _ in UserDefaultsAppLifecycleRepository() }
+        // MARK: - CoreData
+        container.register(CoreDataStack.self) { _ in
+            CoreDataStack(modelName: "Model")
+        }
+        .inObjectScope(.container)
         
+        // MARK: - Repositories
+        container.register(SessionRepositoryProtocol.self) { resolver in
+            guard let stack = resolver.resolve(CoreDataStack.self) else {
+                fatalError("Can't resolve CoreDataStack")
+            }
+            return CoreDataSessionRepository(context: stack.viewContext)
+        }
+        .inObjectScope(.container)
+        
+        container.register(ReviewRepositoryProtocol.self) { _ in
+            UserDefaultsReviewRepository()
+        }
+        .inObjectScope(.container)
+        container.register(AppLifecycleRepositoryProtocol.self) { _ in
+            UserDefaultsAppLifecycleRepository()
+        }
+        .inObjectScope(.container)
+        
+        // MARK: - Services
         container.register(SessionTrackerServiceProtocol.self) { resolver in
             guard
-                let sessionRepo: SessionRepositoryProtocol = resolver.resolve(CoreDataSessionRepository.self),
+                let sessionRepo: SessionRepositoryProtocol = resolver.resolve(SessionRepositoryProtocol.self),
                 let lifecycleRepo: AppLifecycleRepositoryProtocol = resolver.resolve(UserDefaultsAppLifecycleRepository.self)
             else {
                 fatalError("Can't resolve dependencies for SessionTrackerService")
@@ -26,12 +47,13 @@ final class AppAssembly: Assembly {
                 lifecycleRepo: lifecycleRepo
             )
         }
+        .inObjectScope(.container)
         
         container.register(ReviewRequestServiceProtocol.self) { resolver in
             guard
-                let sessionRepo: SessionRepositoryProtocol = resolver.resolve(CoreDataSessionRepository.self),
+                let sessionRepo: SessionRepositoryProtocol = resolver.resolve(SessionRepositoryProtocol.self),
                 let lifecycleRepo: AppLifecycleRepositoryProtocol = resolver.resolve(UserDefaultsAppLifecycleRepository.self),
-                let reviewRepo: ReviewRepositoryProtocol = resolver.resolve(UserDefaultsReviewRepository.self)
+                let reviewRepo: ReviewRepositoryProtocol = resolver.resolve(ReviewRepositoryProtocol.self)
             else {
                 fatalError("Can't resolve dependencies for ReviewRequestService")
             }
@@ -42,5 +64,6 @@ final class AppAssembly: Assembly {
                 reviewRepo: reviewRepo
             )
         }
+        .inObjectScope(.container)
     }
 }

@@ -46,6 +46,7 @@ final class ReviewRequestService: ReviewRequestServiceProtocol {
         
         SKStoreReviewController.requestReview(in: scene)
         reviewRepo.setLastRequestDate(date: now)
+        sessionRepo.removeAllNotActive()
     }
     
     // MARK: - private
