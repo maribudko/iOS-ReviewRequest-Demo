@@ -36,7 +36,6 @@ final class ReviewRequestService: ReviewRequestServiceProtocol {
     
     func requestReview(on viewController: UIViewController?) {
         let now = dateProvider()
-        
         let scene = viewController?.view.window?.windowScene
         ?? UIApplication.shared.connectedScenes
             .compactMap { $0 as? UIWindowScene }
@@ -44,9 +43,14 @@ final class ReviewRequestService: ReviewRequestServiceProtocol {
         
         guard let scene else { return }
         
+#if DEBUG
+        print("Store Review is called")
+#else
         SKStoreReviewController.requestReview(in: scene)
+#endif
         reviewRepo.setLastRequestDate(date: now)
-        sessionRepo.removeAllNotActive()
+        sessionRepo.removeAllCompleted()
+        
     }
     
     // MARK: - private
