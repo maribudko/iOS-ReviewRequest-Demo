@@ -3,5 +3,8 @@
 //
 
 struct Services {
-    static let sessionTrackerService = AppAssembler.shared.resolver.resolve(SessionTrackerServiceProtocol.self)
+    static let resolver = AppAssembler.shared.resolver
+    
+    static let sessionTrackerService = resolver.resolve(SessionTrackerServiceProtocol.self)
+    static let reviewRequestService = resolver.resolve(ReviewRequestServiceProtocol.self)
 }

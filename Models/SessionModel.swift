@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SessionEntity {
+class SessionModel {
     var sessionId: UUID
     var sessionStart: Date
     var sessionEnd: Date?
