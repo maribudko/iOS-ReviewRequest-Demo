@@ -39,19 +39,22 @@ class CoreDataSessionRepository: SessionRepositoryProtocol {
     }
     
     func update(session: SessionModel) {
-        guard let session = fetchById(session.sessionId) else { return }
-        session.sessionStart = session.sessionStart
-        session.sessionEnd = session.sessionEnd
+        guard let obj = fetchById(session.sessionId) else { return }
+        obj.sessionStart = session.sessionStart
+        obj.sessionEnd = session.sessionEnd
         save()
     }
     
-    func removeAllNotActive() {
-        let fetch: NSFetchRequest<NSFetchRequestResult> = SessionEntity.fetchRequest()
-        fetch.predicate = NSPredicate(format: "sessionEnd == nil")
-        
-        let deleteReq = NSBatchDeleteRequest(fetchRequest: fetch)
-        _ = try? context.execute(deleteReq)
-        context.refreshAllObjects()
+    func removeAllCompleted() {
+        let req: NSFetchRequest<SessionEntity> = SessionEntity.fetchRequest()
+        req.predicate = NSPredicate(format: "sessionEnd != nil")
+        do {
+            let completed = try context.fetch(req)
+            completed.forEach { context.delete($0) }
+            try context.save()
+        } catch {
+            assertionFailure("CoreData delete error: \(error)")
+        }
     }
     
     // MARK: - private

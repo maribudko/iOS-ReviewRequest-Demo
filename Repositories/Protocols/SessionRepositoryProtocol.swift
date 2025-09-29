@@ -12,5 +12,5 @@ protocol SessionRepositoryProtocol: AnyObject {
     func getAllCompleted() -> [SessionModel]
     func getLatest() -> SessionModel?
     func update(session: SessionModel)
-    func removeAllNotActive()
+    func removeAllCompleted()
 }
