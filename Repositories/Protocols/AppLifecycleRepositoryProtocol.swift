@@ -8,10 +8,10 @@
 import Foundation
 
 protocol AppLifecycleRepositoryProtocol: AnyObject {
-    func setLastFgDate()
+    func setLastFgDate(date: Date)
     func getLastFgDate() -> Date?
-    func setLastBgDate()
+    func setLastBgDate(date: Date)
     func getLastBgDate() -> Date?
     func setTotalUsageSeconds(seconds: TimeInterval)
-    func getTotalUsageSeconds() -> TimeInterval?
+    func getTotalUsageSeconds() -> TimeInterval
 }

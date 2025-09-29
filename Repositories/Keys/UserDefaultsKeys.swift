@@ -11,4 +11,10 @@ enum UserDefaultsKeys {
     enum Review {
         static let lastRequestDate = "review.lastRequestDate"
     }
+    
+    enum Session {
+        static let lastForegroundDate = "session.lastFgDate"
+        static let lastBackgroundDate = "session.lastBgDate"
+        static let totalUsageSeconds = "session.totalUsageSeconds"
+    }
 }

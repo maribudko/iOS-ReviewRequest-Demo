@@ -9,55 +9,63 @@ import Foundation
 
 final class SessionTrackerService: SessionTrackerServiceProtocol {
     private let sessionRepo: SessionRepositoryProtocol
-    private let userDefaultsRepo: AppLifecycleRepositoryProtocol
+    private let lifecycleRepo: AppLifecycleRepositoryProtocol
+    private let dateProvider: () -> Date
     
     private let hour: TimeInterval = 60 * 60
     
-    init(sessionRepo: SessionRepositoryProtocol, userDefaultsRepo: AppLifecycleRepositoryProtocol) {
+    init(
+        sessionRepo: SessionRepositoryProtocol,
+        lifecycleRepo: AppLifecycleRepositoryProtocol,
+        dateProvider: @escaping () -> Date = { Date() }
+    ) {
         self.sessionRepo = sessionRepo
-        self.userDefaultsRepo = userDefaultsRepo
+        self.lifecycleRepo = lifecycleRepo
+        self.dateProvider = dateProvider
     }
     
     public func willEnterForeground() {
-        userDefaultsRepo.setLastFgDate()
+        let now = dateProvider()
+        lifecycleRepo.setLastFgDate(date: now)
         
         // check if actual session exists
-        if !isAlive() {
-            startNewSession()
+        if !isAlive(now: now) {
+            startNewSession(now: now)
         }
     }
     
     public func didEnterBackground() {
-        guard let lastFg = userDefaultsRepo.getLastFgDate() else {
-            userDefaultsRepo.setLastBgDate()
+        let now = dateProvider()
+        
+        guard let lastFg = lifecycleRepo.getLastFgDate() else {
+            lifecycleRepo.setLastBgDate(date: now)
             return
         }
         
         updateTotalUsageTime(lastFgDate: lastFg)
         
-        userDefaultsRepo.setLastBgDate()
+        lifecycleRepo.setLastBgDate(date: now)
     }
     
-    private func isAlive() -> Bool {
-        guard let lastBgDate = userDefaultsRepo.getLastBgDate() else {
-            return false
-        }
+    //MARK: - Private
+    
+    private func isAlive(now: Date) -> Bool {
+        guard let lastBgDate = lifecycleRepo.getLastBgDate() else { return false }
         
-        let duration = Date.now.timeIntervalSince(lastBgDate)
+        let duration = now.timeIntervalSince(lastBgDate)
         return duration <= hour
     }
     
-    private func startNewSession(){
-        finalizeSession()
-        //TODO: call RequestReviewService to check distinct sessions number
+    private func startNewSession(now: Date){
+        finalizeSession(now: now)
         
-        let newSession = SessionEntity(sessionId: UUID(), sessionStart: Date.now)
+        let newSession = SessionEntity(sessionId: UUID(), sessionStart: now)
         sessionRepo.add(session: newSession)
     }
     
-    private func finalizeSession() {
+    private func finalizeSession(now: Date) {
         let lastSession = sessionRepo.getLatest()
-        lastSession?.sessionEnd = Date.now
+        lastSession?.sessionEnd = now
     }
     
     private func updateTotalUsageTime(lastFgDate: Date) {
@@ -65,8 +73,8 @@ final class SessionTrackerService: SessionTrackerServiceProtocol {
         
         let usageTime = now.timeIntervalSince(lastFgDate)
         if usageTime > 0 {
-            let total = (userDefaultsRepo.getTotalUsageSeconds() ?? 0) + usageTime
-            userDefaultsRepo.setTotalUsageSeconds(seconds: total)
+            let total = lifecycleRepo.getTotalUsageSeconds() + usageTime
+            lifecycleRepo.setTotalUsageSeconds(seconds: total)
         }
     }
 }
