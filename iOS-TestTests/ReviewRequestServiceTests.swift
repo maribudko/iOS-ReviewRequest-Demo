@@ -16,6 +16,7 @@ struct ReviewRequestServiceTests {
         let mockLifecycleRepo = MockLifeCycleRepo(total: 5*60, lastFg: nil)
         let spyReviewRepo = SpyReviewRepo()
         let now = Date()
+        let mockAppReview = MockAppReviewRequest()
         
         let reviewRequestService = ReviewRequestService(
             sessionRepo: mockSessionRepo,
@@ -24,7 +25,7 @@ struct ReviewRequestServiceTests {
             dateProvider: { now }
         )
         
-        reviewRequestService.evaluateAndRequestIfNeeded(on: nil)
+        reviewRequestService.evaluateAndRequestIfNeeded(reviewRequest: mockAppReview)
         
         #expect(spyReviewRepo.lastSetDate == nil)
     }
@@ -34,6 +35,7 @@ struct ReviewRequestServiceTests {
         let mockLifecycleRepo = MockLifeCycleRepo(total: 10 * 60, lastFg: nil)
         let spyReviewRepo = SpyReviewRepo()
         let now = Date()
+        let mockAppReview = MockAppReviewRequest()
         
         // adding mock sessions list
         mockSessionRepo.set2CompletedSessions()
@@ -44,7 +46,7 @@ struct ReviewRequestServiceTests {
             reviewRepo: spyReviewRepo,
         dateProvider: { now })
         
-        reviewRequestService.evaluateAndRequestIfNeeded(on: nil)
+        reviewRequestService.evaluateAndRequestIfNeeded(reviewRequest: mockAppReview)
         
         #expect(spyReviewRepo.lastSetDate == now)
     }
