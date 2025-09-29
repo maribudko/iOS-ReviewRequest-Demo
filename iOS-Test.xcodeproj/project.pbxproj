@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		EA85877A2E87E5E8005A1807 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = EA8587792E87E5E8005A1807 /* Swinject */; };
+		EA8588602E8B0DEF005A1807 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = EA85885F2E8B0DEF005A1807 /* FirebaseAnalytics */; };
+		EA8588622E8B0E87005A1807 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EA8588612E8B0E87005A1807 /* GoogleService-Info.plist */; };
 		EF9196922B3B1D5700DC508B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9196912B3B1D5700DC508B /* AppDelegate.swift */; };
 		EF91969B2B3B1D5C00DC508B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF91969A2B3B1D5C00DC508B /* Assets.xcassets */; };
 		EF91969E2B3B1D5C00DC508B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF91969C2B3B1D5C00DC508B /* LaunchScreen.storyboard */; };
@@ -33,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		EA85883B2E8A7196005A1807 /* iOS-TestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-TestTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA8588612E8B0E87005A1807 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EF91968E2B3B1D5700DC508B /* iOS-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF9196912B3B1D5700DC508B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF91969A2B3B1D5C00DC508B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -69,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA8588602E8B0DEF005A1807 /* FirebaseAnalytics in Frameworks */,
 				EA85877A2E87E5E8005A1807 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,6 +83,7 @@
 		EF9196852B3B1D5700DC508B = {
 			isa = PBXGroup;
 			children = (
+				EA8588612E8B0E87005A1807 /* GoogleService-Info.plist */,
 				EA8587EE2E8A5DBA005A1807 /* CoreData */,
 				EA8587832E87E8AB005A1807 /* DI */,
 				EA8587802E87E7D5005A1807 /* Models */,
@@ -198,6 +203,7 @@
 			mainGroup = EF9196852B3B1D5700DC508B;
 			packageReferences = (
 				EA8587782E87E5E8005A1807 /* XCRemoteSwiftPackageReference "Swinject" */,
+				EA85885E2E8B0DEF005A1807 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = EF91968F2B3B1D5700DC508B /* Products */;
 			projectDirPath = "";
@@ -222,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF91969E2B3B1D5C00DC508B /* LaunchScreen.storyboard in Resources */,
+				EA8588622E8B0E87005A1807 /* GoogleService-Info.plist in Resources */,
 				EF91969B2B3B1D5C00DC508B /* Assets.xcassets in Resources */,
 				EF9196AB2B3B1D8F00DC508B /* Dummy.storyboard in Resources */,
 			);
@@ -456,7 +463,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.f17y.iOS-Test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.maribudko.iOS-Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -483,7 +490,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.f17y.iOS-Test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.maribudko.iOS-Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -532,6 +539,14 @@
 				minimumVersion = 2.10.0;
 			};
 		};
+		EA85885E2E8B0DEF005A1807 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.3.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -539,6 +554,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EA8587782E87E5E8005A1807 /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
+		};
+		EA85885F2E8B0DEF005A1807 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EA85885E2E8B0DEF005A1807 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
