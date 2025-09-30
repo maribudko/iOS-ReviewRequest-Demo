@@ -27,7 +27,7 @@ excluded:
   - Carthage
   - Generated
   - iOS-Test/Resources
-  - iOS-Test/CoreData/Model.*  # сгенерированные NSManagedObject файлы
+  - iOS-Test/CoreData/Model.*  
 
 reporter: "xcode"
 

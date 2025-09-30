@@ -44,7 +44,7 @@ class DummyViewController: UIViewController, AppReviewRequestProtocol {
             AnalyticsParameterScreenClass: "DummyViewController"
         ])
         
-        Services.reviewRequestService.evaluateAndRequestIfNeeded(reviewRequest: self)
+        //Services.reviewRequestService.evaluateAndRequestIfNeeded(reviewRequest: self)
     }
     
     // MARK: - Common

@@ -36,7 +36,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        guard
+            let windowScene = scene as? UIWindowScene,
+            let root = windowScene.windows.first(where: { $0.isKeyWindow })?.rootViewController,
+            let top = topViewController(from: root),
+            top is DummyViewController
+        else { return }
+        
+        Services.reviewRequestService.evaluateAndRequestIfNeeded(reviewRequest: top as! AppReviewRequestProtocol)
     }
+    
     
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
@@ -54,6 +63,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+    }
+    
+    // MARK: - private
+    
+    private func topViewController(from vc: UIViewController) -> UIViewController? {
+        if let nav = vc as? UINavigationController { return topViewController(from: nav.visibleViewController ?? nav)}
+        if let tab = vc as? UITabBarController { return tab.selectedViewController.flatMap(topViewController(from:)) }
+        if let presented = vc.presentedViewController { return topViewController(from: presented) }
+        return vc
     }
 }
 

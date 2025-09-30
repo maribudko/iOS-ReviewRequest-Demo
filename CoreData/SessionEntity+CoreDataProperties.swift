@@ -9,7 +9,6 @@
 public import Foundation
 public import CoreData
 
-
 public typealias SessionEntityCoreDataPropertiesSet = NSSet
 
 extension SessionEntity {
@@ -21,7 +20,6 @@ extension SessionEntity {
     @NSManaged public var sessionId: UUID?
     @NSManaged public var sessionStart: Date?
     @NSManaged public var sessionEnd: Date?
-
 }
 
 extension SessionEntity : Identifiable {
