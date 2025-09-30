@@ -1,5 +1,9 @@
 Test asignment for iOS developer position
 
+## Note
+In a real project, I would split the code into modules for better structure and testability, and provide more comprehensive test coverage.  
+If I misunderstood any of the requirements, please let me know. I am open to discussing it and making the necessary fixes.
+
 ## Features:
 - Tracks user sessions (Foreground / Background).
 - Calculates total app usage time.
@@ -17,6 +21,7 @@ Test asignment for iOS developer position
 - Dependency Injection (Swinject)
 - Unit Tests (Swift Testing)
 - SwiftLint (code style)
+- Firebase Analytics
 
 ## Tests
 - Unit tests are implemented using Swift Testing.
