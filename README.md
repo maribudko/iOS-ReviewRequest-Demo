@@ -1,6 +1,6 @@
 Test asignment for iOS developer position
 
-№№ Note
+## Note
 This project was initially implemented as a take-home assignment. I decided to keep it as a reference in my portfolio to demonstrate usage of StoreKit requestReview, Core Data session tracking, dependency injection (Swinject), and unit testing.
 
 ## Features:
