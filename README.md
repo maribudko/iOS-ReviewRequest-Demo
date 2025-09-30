@@ -32,7 +32,3 @@ If I misunderstood any of the requirements, please let me know. I am open to dis
 - Enforced with SwiftLint.
 - Configuration is available in .swiftlint.yml.
 - Linting runs automatically on build.
-
-##Note 
-In real project I'd split in modules for better structuring and testing, provide better test coverage. 
-If there is something I misunderstood, please, let me know about it. I am ready to discuss it and fix it.
