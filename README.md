@@ -1,9 +1,5 @@
 Test asignment for iOS developer position
 
-## Note
-In a real project, I would split the code into modules for better structure and testability, and provide more comprehensive test coverage.  
-If I misunderstood any of the requirements, please let me know. I am open to discussing it and making the necessary fixes.
-
 ## Features:
 - Tracks user sessions (Foreground / Background).
 - Calculates total app usage time.
