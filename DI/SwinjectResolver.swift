@@ -35,6 +35,4 @@ final class SwinjectResolver: DIResolver {
         }
         return resolved
     }
-    
-    
 }

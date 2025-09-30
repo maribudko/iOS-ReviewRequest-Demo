@@ -36,6 +36,7 @@
 /* Begin PBXFileReference section */
 		EA85883B2E8A7196005A1807 /* iOS-TestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-TestTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA8588612E8B0E87005A1807 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EAE2C3722E8BB178003FAD21 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = .swiftlint.yml; sourceTree = "<group>"; };
 		EF91968E2B3B1D5700DC508B /* iOS-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF9196912B3B1D5700DC508B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF91969A2B3B1D5C00DC508B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -93,6 +94,7 @@
 		EF9196852B3B1D5700DC508B = {
 			isa = PBXGroup;
 			children = (
+				EAE2C3722E8BB178003FAD21 /* .swiftlint.yml */,
 				EA8588612E8B0E87005A1807 /* GoogleService-Info.plist */,
 				EA8587EE2E8A5DBA005A1807 /* CoreData */,
 				EA8587832E87E8AB005A1807 /* DI */,
@@ -164,6 +166,7 @@
 			buildConfigurationList = EF9196A22B3B1D5C00DC508B /* Build configuration list for PBXNativeTarget "iOS-Test" */;
 			buildPhases = (
 				EF91968A2B3B1D5700DC508B /* Sources */,
+				EAE2C3742E8BB22B003FAD21 /* Run Script */,
 				EF91968B2B3B1D5700DC508B /* Frameworks */,
 				EF91968C2B3B1D5700DC508B /* Resources */,
 			);
@@ -191,7 +194,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2600;
-				LastUpgradeCheck = 1510;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					EA85883A2E8A7196005A1807 = {
 						CreatedOnToolsVersion = 26.0.1;
@@ -214,6 +217,7 @@
 			packageReferences = (
 				EA8587782E87E5E8005A1807 /* XCRemoteSwiftPackageReference "Swinject" */,
 				EA85885E2E8B0DEF005A1807 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				EAE2C3712E8BB138003FAD21 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = EF91968F2B3B1D5700DC508B /* Products */;
 			projectDirPath = "";
@@ -245,6 +249,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EAE2C3742E8BB22B003FAD21 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# SwiftLint из SPM\nSWIFTLINT=\"${BUILD_DIR%Build/*}SourcePackages/artifacts/swiftlint/swiftlint\"\n\nif [[ -x \"$SWIFTLINT\" ]]; then\n  if [[ -f \"${SRCROOT}/.swiftlint.yml\" ]]; then\n    \"$SWIFTLINT\" lint --config \"${SRCROOT}/.swiftlint.yml\" --quiet\n  else\n    \"$SWIFTLINT\" lint --quiet\n  fi\nelse\n  echo \"warning: SwiftLint binary not found (SPM).\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EA8588372E8A7196005A1807 /* Sources */ = {
@@ -297,7 +322,6 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 93377Y9PF9;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
@@ -319,7 +343,6 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 93377Y9PF9;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
@@ -370,6 +393,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 93377Y9PF9;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -393,6 +417,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -433,6 +458,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 93377Y9PF9;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -449,6 +475,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -461,7 +488,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 93377Y9PF9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -488,7 +514,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 93377Y9PF9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -555,6 +580,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 12.3.0;
+			};
+		};
+		EAE2C3712E8BB138003FAD21 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.61.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

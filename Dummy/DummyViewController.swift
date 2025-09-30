@@ -40,9 +40,9 @@ class DummyViewController: UIViewController, AppReviewRequestProtocol {
         ])
         
         Analytics.logEvent(AnalyticsEventScreenView, parameters: [
-                AnalyticsParameterScreenName: "Dummy",
-                AnalyticsParameterScreenClass: "DummyViewController"
-            ])
+            AnalyticsParameterScreenName: "Dummy",
+            AnalyticsParameterScreenClass: "DummyViewController"
+        ])
         
         Services.reviewRequestService.evaluateAndRequestIfNeeded(reviewRequest: self)
     }
