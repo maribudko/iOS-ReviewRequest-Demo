@@ -1,0 +1,46 @@
+//
+//  .swiftlint.yml
+//  iOS-Test
+//
+//  Created by Mari Budko on 30.09.2025.
+//
+
+disabled_rules:
+  - trailing_whitespace
+  - todo
+  - line_length
+  - identifier_name
+
+opt_in_rules:
+  - empty_count
+  - explicit_init
+  - force_unwrapping
+  - overridden_super_call
+  - unneeded_parentheses_in_closure_argument
+
+included:
+  - iOS-Test
+  - iOS-TestTests
+
+excluded:
+  - Pods
+  - Carthage
+  - Generated
+  - iOS-Test/Resources
+  - iOS-Test/CoreData/Model.*  # сгенерированные NSManagedObject файлы
+
+reporter: "xcode"
+
+force_unwrapping: warning
+cyclomatic_complexity:
+  warning: 12
+  error: 20
+function_body_length:
+  warning: 60
+  error: 100
+type_body_length:
+  warning: 300
+  error: 500
+file_length:
+  warning: 400
+  error: 1000
