@@ -8,7 +8,7 @@
 import Foundation
 @testable import iOS_Test
 
-final class MockAppReviewRequest: iOS_Test.AppReviewRequestProtocol {
+struct MockAppReviewRequest: iOS_Test.AppReviewRequestProtocol {
     func requestReview() {
         debugPrint("Review window shown")
     }

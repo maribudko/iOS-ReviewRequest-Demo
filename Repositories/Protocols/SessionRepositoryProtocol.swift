@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol SessionRepositoryProtocol: AnyObject {
+protocol SessionRepositoryProtocol {
     func add(session: SessionModel)
     func getAllCompleted() -> [SessionModel]
     func getLatest() -> SessionModel?

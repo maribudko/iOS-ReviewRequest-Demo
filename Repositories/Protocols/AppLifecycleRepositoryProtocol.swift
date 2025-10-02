@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol AppLifecycleRepositoryProtocol: AnyObject {
+protocol AppLifecycleRepositoryProtocol {
     func setLastFgDate(date: Date)
     func getLastFgDate() -> Date?
     func setLastBgDate(date: Date)

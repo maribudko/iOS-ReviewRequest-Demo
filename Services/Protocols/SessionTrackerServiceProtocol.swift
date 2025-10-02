@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol SessionTrackerServiceProtocol: AnyObject {
+protocol SessionTrackerServiceProtocol {
     func willEnterForeground()
     func didEnterBackground()
 }

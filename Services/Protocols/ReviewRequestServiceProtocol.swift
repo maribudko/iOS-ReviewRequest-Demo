@@ -8,6 +8,6 @@
 import Foundation
 import UIKit
 
-protocol ReviewRequestServiceProtocol: AnyObject {
+protocol ReviewRequestServiceProtocol {
     func evaluateAndRequestIfNeeded(reviewRequest: AppReviewRequestProtocol)
 }

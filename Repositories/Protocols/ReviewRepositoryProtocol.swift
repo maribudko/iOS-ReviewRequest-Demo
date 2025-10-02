@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ReviewRepositoryProtocol: AnyObject {
+protocol ReviewRepositoryProtocol {
     func setLastRequestDate(date: Date)
     func getLastRequestDate() -> Date?
 }

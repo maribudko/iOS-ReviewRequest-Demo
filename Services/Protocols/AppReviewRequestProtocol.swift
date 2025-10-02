@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol AppReviewRequestProtocol: AnyObject {
+protocol AppReviewRequestProtocol {
     func requestReview()
 }
